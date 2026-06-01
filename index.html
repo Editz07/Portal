@@ -1121,6 +1121,22 @@ function triggerDissolve() {
 
   try { localStorage.setItem(STORAGE_KEY, '1'); } catch(e) {}
 }
+     // Block right-click menu
+  document.addEventListener('contextmenu', function(e) {
+    e.preventDefault();
+  });
+
+  // Block specific keyboard shortcuts
+  document.addEventListener('keydown', function(e) {
+    // Check for Ctrl or Cmd key
+    if (e.ctrlKey || e.metaKey) {
+      // List of key codes to block
+      const blockedKeys = ['s', 'u', 'c', 'p', 'a', 'x'];
+      if (blockedKeys.includes(e.key.toLowerCase())) {
+        e.preventDefault();
+      }
+    }
+  });
 </script>
 </body>
 </html>
